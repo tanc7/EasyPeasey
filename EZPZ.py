@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding=UTF-8
+
 #Startup Module Imports
 import os
 import socket
