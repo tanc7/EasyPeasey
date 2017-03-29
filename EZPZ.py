@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding=UTF-8
-
 #Startup Module Imports
 import os
 import socket
@@ -441,9 +438,9 @@ def Platform_Python():
     opt_Choice = str(raw_input("Enter a OPTION: "))
 
     if opt_Choice == "1":
-        return
+        Python_INLINE()
     elif opt_Choice == "2":
-        return
+        Python_STAGED()
     elif opt_Choice == "0":
         main()
     else:
@@ -466,10 +463,10 @@ def Ruby_INLINE():
         '2': 'ruby/shell_reverse_tcp_ssl'
     }
 
-    opt_List = {
+    opt_List = (
         '\n\t#1. Ruby Reverse COMMAND Shell, TCP',
         '#2. Ruby Reverse COMMAND Shell, TCP + SSL'
-    }
+    )
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
