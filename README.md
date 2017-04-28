@@ -1,8 +1,14 @@
 # EasyPeasey
 Metasploit/MSFVenom Payload Generator Stand Alone
 
-##EasyPeasey takes the frustration and uncertainty of typing console commands out of your hands
-##Run EasyPeasey by typing "python EZPZ.py" or "python /$PATH/EZPZ.py"
+## EasyPeasey takes the frustration and uncertainty of typing console commands out of your hands
+Newest version of EasyPeasey can be run as a Terminal Command:
+
+> EZPZ.py
+
+Be sure to update your git repos or simply follow the new installation instructions below (fully automatic, requires python)
+
+# Features
 
 As of March 26th, 2017, incorporates payloads available on Metasploit, including but not limited to...
     Windows
