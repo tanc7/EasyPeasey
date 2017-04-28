@@ -31,6 +31,10 @@ Following the following steps, from terminal:
 
 >cd EasyPeasey
 
+> git submodule init
+
+> git submodule update
+
 >python setup_Easy_Peasey.py
 
 Then go grab a coffee. 
