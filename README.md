@@ -31,22 +31,6 @@ Following the following steps, from terminal:
 
 >cd EasyPeasey
 
-> git submodule init
-
-> git submodule update
-
 >python setup_Easy_Peasey.py
 
 Then go grab a coffee. 
-
-# New Feature: Test all 39 Metasploit encoders against a single payload type
-Video Explaining this process and how-to-use here:
-http://www.dailymotion.com/video/x5k2hcc (link changed due to Copyright issues with the music track)
-
-Purpose:
-
-        1. Helps you quickly decide which encoders is best to use based on...
-        2. Whether the encoding went smoothly
-        3. Overall filesize of the output payload
-        4. Minimalist in disk space (it overwrites itself 39 times basically).
- 
