@@ -8,12 +8,13 @@ import socket
 
 # git clone
 print '[+] Git cloning latest GitHub Release'
-os.chdir('/tmp')
+tmp_dir = '/tmp'
+os.chdir(tmp_dir)
 cmd_String = 'git clone https://github.com/tanc7/EasyPeasey'
 os.system(cmd_String)
 print '[+] Creating directories'
-
-os.chdir('./EasyPeasey')
+curr_EZPZ_dir = './EasyPeasey'
+os.chdir(curr_EZPZ_dir)
 os.system('mkdir /root/EZPZ/')
 print '[+] Copying files'
 
