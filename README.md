@@ -12,7 +12,16 @@ As of March 26th, 2017, incorporates payloads available on Metasploit, including
     Java
     Ruby
 
-## Requires Termcolors, Python 2.7.13, and Python-Pip
-##Run the dependencyInstaller.sh script file if you don't have any the three aforementioned packages
-## Run EZPZ_Installer.sh if you want the program to be run from command line as "EZPZ.py"
-## It will automatically make a /root/ArmsCommander directory and drop the files in there. 
+# Update, New Installation Method, Python-AutoInstaller
+
+Due to some weird bug where git cloning does not pull the latest version, I had to use a python auto-installer script to make it work. 
+This python script will automatically perform the correct settings to keep the git submodules updated and pull the latest version.
+
+Following the following steps, from terminal:
+
+>>cd /tmp
+>>git clone https://github.com/tanc7/EasyPeasey
+>>cd EasyPeasey
+>>python setup_Easy_Peasey.py
+
+Then go grab a coffee. 
