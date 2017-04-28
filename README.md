@@ -19,9 +19,12 @@ This python script will automatically perform the correct settings to keep the g
 
 Following the following steps, from terminal:
 
->>cd /tmp
->>git clone https://github.com/tanc7/EasyPeasey
->>cd EasyPeasey
->>python setup_Easy_Peasey.py
+>cd /tmp
+
+>git clone https://github.com/tanc7/EasyPeasey
+
+>cd EasyPeasey
+
+>python setup_Easy_Peasey.py
 
 Then go grab a coffee. 
