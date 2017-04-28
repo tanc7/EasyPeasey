@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding=UTF-8
+
+#The first line allows this script to be executable
 #Startup Module Imports
 import os
 import socket

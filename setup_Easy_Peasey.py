@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# coding=UTF-8
+
+#The first line allows this script to be executable
+import os
+import socket
+# import operator
+# import sys
+# sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=64, cols=200)) # sets window to full screen
+
+# git clone
+print '[+] Git cloning latest GitHub Release'
+os.chdir('/tmp')
+cmd_String = 'git clone https://github.com/tanc7/EasyPeasey'
+os.system(cmd_String)
+print '[+] Creating directories'
+
+os.chdir('./EasyPeasey')
+os.system('mkdir /root/EZPZ/')
+print '[+] Copying files'
+
+os.system('chmod 777 ./*')
+os.system('cp -r ./* /root/EZPZ')
+os.system('cp -r EZPZ.py /usr/local/bin')
+
+
+print '[+] Installing Python Package prerequisites'
+
+cmd_String = "pip install -r /root/ArmsCommander/remoteexploits/EZPZ_Requirements.txt"
+os.system(cmd_String)
+
+print '[+] Updating your Metasploit Framework Installation'
+os.system('msfupdate')
+
+print '[+] Done. You should be able to access EasyPeasey by going to the console and typing:'
+print 'EZPZ.py'
+
+print '[+] Launching EasyPeasey as a terminal command.'
+cmd_String = 'EZPZ.py'
+os.system(cmd_String)
