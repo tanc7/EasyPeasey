@@ -41,7 +41,7 @@ Then go grab a coffee.
 
 # New Feature: Test all 39 Metasploit encoders against a single payload type
 Video Explaining this process and how-to-use here:
-http://www.dailymotion.com/video/x5k0dfr
+http://www.dailymotion.com/video/x5k2hcc (link changed due to Copyright issues with the music track)
 
 Purpose:
 
