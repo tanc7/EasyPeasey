@@ -38,3 +38,14 @@ Following the following steps, from terminal:
 >python setup_Easy_Peasey.py
 
 Then go grab a coffee. 
+
+# New Feature: Test all 39 Metasploit encoders against a single payload type
+Video Explaining this process and how-to-use here:
+http://www.dailymotion.com/video/x5k0dfr
+
+Purpose:
+    1. Helps you quickly decide which encoders is best to use based on...
+    2. Whether the encoding went smoothly
+    3. Overall filesize of the output payload
+    4. Minimalist in disk space (it overwrites itself 39 times basically).
+ 
