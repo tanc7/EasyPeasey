@@ -16,6 +16,7 @@ print '[+] Creating directories'
 curr_EZPZ_dir = './EasyPeasey'
 os.chdir(curr_EZPZ_dir)
 os.system('mkdir /root/EZPZ/')
+os.system('mkdir /root/EZPZ/payloads')
 print '[+] Copying files'
 
 os.system('chmod 777 ./*')
