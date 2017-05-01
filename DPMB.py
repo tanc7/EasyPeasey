@@ -5,7 +5,7 @@ from termcolor import colored
 import sys
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=64, cols=200)) # sets window to full screen
 
-os.system('cat /root/ArmsCommander/banners/banner_DPMB.txt')
+os.system('cat /root/EZPZ/banners/banner_DPMB.txt')
 print colored("""Don't Patch Me Bro! The easy-mode inject.bin generator for the USB Rubber Ducky (from Hak5 Shop), \nthe Rubber Ducky is proprietary hardware sold to facilitate quick-and-easy BadUSB attacks
 """,'red','on_white'
 )
@@ -18,7 +18,7 @@ class parameters_Run_DuckYourself(object):
     @classmethod
     def from_input(cls):
         return cls(
-            '/root/ArmsCommander/remoteexploits/duckencode.jar',
+            '/root/EZPZ/remoteexploits/duckencode.jar',
             str(raw_input("Enter the location of your text file in DuckyScript: ")),
             str(raw_input("Enter the location of your SDCard: "))
         )

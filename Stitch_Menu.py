@@ -32,9 +32,9 @@ def main():
     opt_Choice = str(raw_input("ENTER A OPTION: "))
 
     if opt_Choice == "0":
-        os.system('python /root/ArmsCommander/ArmsCommander.py')
+        os.system('python /root/EZPZ/ArmsCommander.py')
     elif opt_Choice == "INSTALL":
-        os.system('python /root/ArmsCommander/remoteexploits/stitchInstaller.py')
+        os.system('python /root/EZPZ/remoteexploits/stitchInstaller.py')
     elif opt_Choice == "1":
         os.system('python /root/Stitch/main.py')
     else:

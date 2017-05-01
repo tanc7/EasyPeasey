@@ -25,7 +25,7 @@ os.system('cp -r EZPZ.py /usr/local/bin')
 
 print '[+] Installing Python Package prerequisites'
 
-cmd_String = "pip install -r /root/ArmsCommander/remoteexploits/EZPZ_Requirements.txt"
+cmd_String = "pip install -r /root/EZPZ/remoteexploits/EZPZ_Requirements.txt"
 os.system(cmd_String)
 
 print '[+] Updating your Metasploit Framework Installation'

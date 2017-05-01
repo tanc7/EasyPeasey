@@ -16,7 +16,7 @@ sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=64, cols=200)) # sets windo
 text_Starting = colored('[*] Beginning tests against all 39 encoders','yellow',attrs=['bold'])
 text_Finished = colored('[*] Encoder tests completed, please check console output','green',attrs=['bold'])
 text_Successful = colored('[+] Successful Encoding Detected','green',attrs=['bold'])
-encoder_test_results = '/root/ArmsCommander/payloads/encoder_test_results.txt'
+encoder_test_results = '/root/EZPZ/payloads/encoder_test_results.txt'
 
 # #def #write_encoder_success_file():
 #     f = open(encoder_test_results,'w')
@@ -187,7 +187,7 @@ def Windows_INLINE():
         opt_Choice = str(raw_input("Enter a payload shown: "))
 
         if opt_Choice in opt_Dict:
-            # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+            # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
             # print colored('Please answer the following questions','red','on_white')
             print text_Starting
             payload_Set = opt_Dict[opt_Choice]
@@ -195,7 +195,7 @@ def Windows_INLINE():
             for key in encoder_Dict:
                 encoder_Set = encoder_Dict[key]
                 encoder_Iterations = '1'
-                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
                 """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
                 text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
                 print text
@@ -225,7 +225,7 @@ def Windows_STAGED():
         opt_Choice = str(raw_input("Enter a payload shown: "))
 
         if opt_Choice in opt_Dict:
-            # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+            # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
             # print colored('Please answer the following questions','red','on_white')
             print text_Starting
             payload_Set = opt_Dict[opt_Choice]
@@ -233,7 +233,7 @@ def Windows_STAGED():
             for key in encoder_Dict:
                 encoder_Set = encoder_Dict[key]
                 encoder_Iterations = '1'
-                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
                 """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
                 text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
                 print text
@@ -284,7 +284,7 @@ def OSX_PPC():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         text_Starting = colored('[*] Beginning tests against all 39 encoders','yellow',attrs=['bold'])
         print text_Starting
@@ -293,7 +293,7 @@ def OSX_PPC():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -322,7 +322,7 @@ def OSX_x86():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         text_Starting = colored('[*] Beginning tests against all 39 encoders','yellow',attrs=['bold'])
         print text_Starting
@@ -331,7 +331,7 @@ def OSX_x86():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -377,7 +377,7 @@ def Linux_STAGED():
 
     opt_Choice = str(raw_input("Press 1 to create a reverse meterpreter TCP payload: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -385,7 +385,7 @@ def Linux_STAGED():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -418,7 +418,7 @@ def Python_INLINE():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -426,7 +426,7 @@ def Python_INLINE():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -450,7 +450,7 @@ def Python_STAGED():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -458,7 +458,7 @@ def Python_STAGED():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -501,7 +501,7 @@ def Ruby_INLINE():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -509,7 +509,7 @@ def Ruby_INLINE():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -544,7 +544,7 @@ def Java_STAGED():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -552,7 +552,7 @@ def Java_STAGED():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -582,7 +582,7 @@ def Android_INLINE():
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -590,7 +590,7 @@ def Android_INLINE():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -612,7 +612,7 @@ def Android_STAGED():
     print ("\n\t".join(opt_List))
     opt_Choice = str(raw_input("Enter a payload shown: "))
     if opt_Choice in opt_Dict:
-        # os.system('cat /root/ArmsCommander/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
         print text_Starting
         payload_Set = opt_Dict[opt_Choice]
@@ -620,7 +620,7 @@ def Android_STAGED():
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/ArmsCommander/Encoder_Tested
+            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
             """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
@@ -669,7 +669,7 @@ def main():
     opt_Choice = str(raw_input("Enter a category of payloads you want to test: "))
 
     if opt_Choice == "0":
-        os.system('python /root/ArmsCommander/remoteexploits/EZPZ.py')
+        os.system('python /root/EZPZ/remoteexploits/EZPZ.py')
     elif opt_Choice == "1":
         os.system('clear')
         Platform_Windows()

