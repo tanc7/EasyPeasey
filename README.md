@@ -1,6 +1,8 @@
 # EasyPeasey
 Metasploit/MSFVenom Payload Generator Stand Alone
 
+# New Video of How to use Encoder Tester Mode here: http://www.dailymotion.com/video/x5kelz9
+
 ## EasyPeasey takes the frustration and uncertainty of typing console commands out of your hands
 Newest version of EasyPeasey can be run as a Terminal Command:
 
