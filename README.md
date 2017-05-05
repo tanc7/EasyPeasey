@@ -64,5 +64,6 @@ Status
             a. Confirmed. Ruby Command Shell opens only without any encoding. However, not recommended to be used
             >[*] XX.XXX.XXX.XXX - Command shell session 1 closed.  Reason: Died from EOFError
         7. Java payloads CAN BE ENCODED and EXECUTED "java -jar file.jar"
+        8. 2:54am PST, initial patch is being developed
 
         
