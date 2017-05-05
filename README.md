@@ -69,3 +69,12 @@ Status
         8. 2:54am PST, initial patch is being developed
 
         
+UPCOMING CHANGES TABLE (Personal Reference)
+
+Windows - Yes Encoding
+Mac - Unknown
+Linux - Unknown (ELF files do not properly execute, recommend to switch to Python or Java)
+Python - No Encoding
+Ruby - No Encoding, but the Command Shell from Metasploit's side appears to be bugged (crashes to EOF)
+Java - Yes Encoding
+Android - No Encoding allowed. "Parse Error" on installation if you try to install the apk
