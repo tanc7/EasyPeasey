@@ -58,5 +58,7 @@ Status
         1. Python and Android payloads are fixed in tester version. No encoding will be accepted, otherwise it wont work.
         2. Mac format is changed to ".macho". Cannot be tested unless one of you happens to have a Mac OS X image I can use in a VM
         3. The Encoder-Tester App is now changed to generate one of each payload and will ask you to provide a LHOST and LPORT, so that you can test them yourself before launching them.
-        4. Linux payloads do not appear to be working at all. Neither as a non-encoded ELF file, or encoded. Chmodding them to 777 does nothing. It is RECOMMENDED to instead launch Python payloads instead against both Linux and Mac targets.
+        4. Linux payloads do not appear to be working at all. Neither as a non-encoded ELF file, or encoded. Chmodding them to 777 does nothing. 
+        5. It is RECOMMENDED to instead launch Python payloads instead against both Linux and Mac targets. Both of them as well as other *nix type OSes can execute Python natively.
+        6. Ruby might also require no-encoding
         
