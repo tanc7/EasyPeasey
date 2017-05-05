@@ -44,6 +44,7 @@ The dev has recently discovered several bugs in the program.
         2. Some payloads may not work just because its encoded
         3. Windows payloads STILL WORK perfectly if it evades antivirus
         4. For Android and Python payloads, the only format specification should be "raw".
+        5. Python payloads also cannot be encoded, "syntax error" on execution by victim.
 
 The dev is working on it right now. He will
 
