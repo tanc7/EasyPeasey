@@ -61,4 +61,7 @@ Status
         4. Linux payloads do not appear to be working at all. Neither as a non-encoded ELF file, or encoded. Chmodding them to 777 does nothing. 
         5. It is RECOMMENDED to instead launch Python payloads instead against both Linux and Mac targets. Both of them as well as other *nix type OSes can execute Python natively.
         6. Ruby might also require no-encoding
+            a. Confirmed. Ruby Command Shell opens only without any encoding. However, not recommended to be used
+            >[*] XX.XXX.XXX.XXX - Command shell session 1 closed.  Reason: Died from EOFError
+
         
