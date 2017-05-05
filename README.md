@@ -68,6 +68,7 @@ Status
             b. mipsle_byte_xori
         8. 2:54am PST, initial patch is being developed
         9. The StageEncoding Option will be left untouched, because if StageEncoding fails, Meterpreter automatically drops back to cleartext
+        10. 3:44am PST, patch tested and released for ArmsCommander. A fork of that patch for this standalone repo is coming soon after more testing.
 
         
 UPCOMING CHANGES TABLE (Personal Reference)
@@ -84,4 +85,4 @@ Ruby - No Encoding, but the Command Shell from Metasploit's side appears to be b
 
 Java - Yes Encoding
 
-Android - No Encoding allowed. "Parse Error" on installation if you try to install the apk
+Android - No Encoding allowed. "Parse Error" on installation if you try to install the apk payload
