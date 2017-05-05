@@ -1,5 +1,11 @@
 # EasyPeasey
-Metasploit/MSFVenom Payload Generator Stand Alone
+Metasploit/MSFVenom Payload Generator Stand Alone Version (forked from ArmsCommander)
+
+1. Rapidly generate payloads in seven different file formats and operating system executables.
+2. Automatically generates for you, a easy resource-file startup script for Metasploit (.rc file)
+3. Automatically adds stage-encoding whenever possible
+4. Test encoder effectiveness for specific payload types on the fly
+5. Has incorporated all of the remote-exploits section from the ArmsCommander.
 
 # New Video of How to use Encoder Tester Mode here: http://www.dailymotion.com/video/x5kelz9
 
