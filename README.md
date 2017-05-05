@@ -67,6 +67,7 @@ Status
             a. cmd_echo
             b. mipsle_byte_xori
         8. 2:54am PST, initial patch is being developed
+        9. The StageEncoding Option will be left untouched, because if StageEncoding fails, Meterpreter automatically drops back to cleartext
 
         
 UPCOMING CHANGES TABLE (Personal Reference)
